@@ -1,10 +1,25 @@
 import React from 'react'
+import { NavLink } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import styles from "./Home.module.css"
 
 function Home() {
+
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    if (user) {
+
+    }
+
     return (
-        <>
-            Home
-        </>
+        <div className={styles['container']}>
+            <div className={styles['main']}>
+                <h1>
+                    Spread your knowledge by Writing.
+                </h1>
+                <NavLink to="" ></NavLink>
+            </div>
+        </div>
     )
 }
 

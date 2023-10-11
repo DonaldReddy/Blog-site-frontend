@@ -10,11 +10,11 @@ function Footer() {
 
                     <ul>
                         <li> <NavLink to='/' >Home</NavLink> </li>
-                        <li> <NavLink to='signin' >SignIn</NavLink> </li>
-                        <li> <NavLink to='signup' >SignUp</NavLink> </li>
+                        <li> <NavLink to='/signin' >SignIn</NavLink> </li>
+                        <li> <NavLink to='/signup' >SignUp</NavLink> </li>
                     </ul>
                     <ul>
-                        <li> <NavLink to='/' >Team</NavLink> </li>
+                        <li> <NavLink to='/test' >Team</NavLink> </li>
                         <li> <NavLink to='/' >Support</NavLink> </li>
                         <li> <NavLink to='/' >Contact</NavLink> </li>
                     </ul>

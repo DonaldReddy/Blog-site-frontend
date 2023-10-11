@@ -1,8 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from "./Header.module.css";
+import UserContext from "../../context/UserContext.js"
+import { useContext } from 'react';
 
 function Header() {
+
+    const { setUser, UserAuth, setUserAuth } = useContext(UserContext);
+    const navigate = useNavigate()
+
+    function logout() {
+        setUserAuth(false);
+        setUser({});
+        localStorage.removeItem("user");
+        alert("Signed Out!!!")
+        navigate("/");
+    }
+
     return (
         <nav className={styles['nav-bar']} >
             <div className={styles['nav-logo']}>
@@ -15,15 +29,33 @@ function Header() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/signin" className={styles.none}>
-                        SignIn
-                    </NavLink>
+                    {UserAuth ?
+                        <NavLink to="/user/my-blogs" className={styles.none}>
+                            My Blogs
+                        </NavLink>
+                        :
+                        <NavLink to="/signin" className={styles.none}>
+                            SignIn
+                        </NavLink>
+                    }
                 </li>
                 <li>
-                    <NavLink to="/signup" className={styles.none}>
-                        SignUp
-                    </NavLink>
+                    {UserAuth ?
+                        <NavLink to="/user/account" className={styles.none}>
+                            My Account
+                        </NavLink>
+                        :
+                        <NavLink to="/signup" className={styles.none}>
+                            SignUp
+                        </NavLink>
+                    }
                 </li>
+                {UserAuth ?
+                    <li>
+                        <button type='button' onClick={logout}  >Logout</button>
+                    </li>
+                    : <></>
+                }
             </ul>
         </nav>
     )

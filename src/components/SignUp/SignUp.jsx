@@ -1,8 +1,20 @@
-import React, { useState } from 'react'
-import styles from "./SignUp.module.css"
+import React, { useEffect, useState, useContext } from 'react'
+import { useNavigate } from "react-router-dom"
+import UserContext from "../../context/UserContext.js"
 import axios from "axios"
+import styles from "./SignUp.module.css"
 
 function SignUp() {
+
+    const navigate = useNavigate()
+
+    const { User, setUser, UserAuth, setUserAuth } = useContext(UserContext);
+
+    useEffect(() => {
+        if (UserAuth) {
+            navigate("/");
+        }
+    }, [])
 
     const [formData, setFormData] = useState({
         email: "",
@@ -27,6 +39,24 @@ function SignUp() {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
             })
+            if (response.data.status) {
+                const value = {
+                    data: {
+                        email: email
+                    },
+                    timeStamp: Date.now()
+                };
+
+                localStorage.setItem("user", JSON.stringify(value));
+
+                setTimeout(() => {
+                    alert("Successfully created account, please login!!")
+                    navigate("/")
+                }, 3000);
+            }
+            else {
+                alert(response.data.error)
+            }
         } catch (error) {
             console.error(error);
         }
@@ -38,7 +68,7 @@ function SignUp() {
     }
 
     return (
-        <div className={styles['main']}>
+        <div className={styles['container']}>
 
             <form id={styles['signup-form']} >
 

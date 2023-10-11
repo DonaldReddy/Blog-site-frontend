@@ -5,14 +5,18 @@ import App from './App.jsx'
 import Home from "./components/Home/Home.jsx"
 import SignIn from "./components/SignIn/SignIn.jsx"
 import SignUp from "./components/SignUp/SignUp.jsx"
+import Dashboard from "./components/Dashboard/Dashboard.jsx"
+import Blogs from './components/MyBlogs/MyBlogs.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route path='' element={<Home />}> </Route>
-      <Route path='signin' element={<SignIn />} ></Route>
-      <Route path='signup' element={<SignUp />} >
-        <Route path='' element={<Home />}> </Route>
+      <Route index element={<Home />} />
+      <Route path='signin' element={<SignIn />} />
+      <Route path='signup' element={<SignUp />} />
+      <Route path='user'>
+        <Route path='account' element={<Dashboard />} />
+        <Route path='my-blogs' element={<Blogs />} />
       </Route>
     </Route>
   )
