@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import UserContext from '../../context/UserContext.js'
 import styles from "./MyBlogs.module.css"
-import Blog from "./Blog/Blog.jsx"
+import BlogList from "./BlogList/BlogList.jsx"
 
 
 function Blogs() {
@@ -34,7 +34,7 @@ function Blogs() {
             <button className={styles['add']} onClick={() => navigate("/user/addBlog")} >Add New Blog</button>
 
             <div className={styles['blog-list']} >
-                <Blog title="test" />
+                <BlogList title="test" />
                 {JSON.stringify(User)}
                 {JSON.stringify(userBlogs)}
             </div>
