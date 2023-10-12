@@ -30,7 +30,7 @@ function Header() {
                 </li>
                 <li>
                     {UserAuth ?
-                        <NavLink to="/user/my-blogs" className={styles.none}>
+                        <NavLink to="/user/myblogs" className={styles.none}>
                             My Blogs
                         </NavLink>
                         :
@@ -52,7 +52,8 @@ function Header() {
                 </li>
                 {UserAuth ?
                     <li>
-                        <button type='button' onClick={logout}  >Logout</button>
+                        <button type='button' className={styles['logout']} onClick={logout}  >Logout</button>
+                        <div id={styles['logout']}></div>
                     </li>
                     : <></>
                 }

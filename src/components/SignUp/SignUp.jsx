@@ -55,7 +55,8 @@ function SignUp() {
                 }, 3000);
             }
             else {
-                alert(response.data.error)
+                if (response.data.error.code == 11000)
+                    alert("Email already in use")
             }
         } catch (error) {
             console.error(error);

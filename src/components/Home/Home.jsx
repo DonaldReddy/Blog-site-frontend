@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
-import { useEffect, useState } from 'react'
 import styles from "./Home.module.css"
 
 function Home() {

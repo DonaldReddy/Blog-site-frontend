@@ -6,17 +6,23 @@ import Home from "./components/Home/Home.jsx"
 import SignIn from "./components/SignIn/SignIn.jsx"
 import SignUp from "./components/SignUp/SignUp.jsx"
 import Dashboard from "./components/Dashboard/Dashboard.jsx"
-import Blogs from './components/MyBlogs/MyBlogs.jsx'
+import MyBlogs from './components/Blog/MyBlogs/MyBlogs.jsx'
+import AddBlog from "./components/Blog/AddBlog/AddBlog.jsx"
+import OpenBlog from './components/Blog/OpenBlog/OpenBlog.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route index element={<Home />} />
+      <Route path='' element={<Home />} />
       <Route path='signin' element={<SignIn />} />
       <Route path='signup' element={<SignUp />} />
       <Route path='user'>
         <Route path='account' element={<Dashboard />} />
-        <Route path='my-blogs' element={<Blogs />} />
+        <Route path='myblogs' >
+          <Route path='' element={<MyBlogs />} />
+          <Route path='openblog/:id' element={<OpenBlog />} />
+          <Route path='addblog' element={<AddBlog />} />
+        </Route>
       </Route>
     </Route>
   )

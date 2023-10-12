@@ -1,0 +1,14 @@
+.blog-card {
+    height: 100px;
+    width: 700px;
+    margin: 30px 0px;
+    padding-left: 10px;
+    background: #713ABE;
+    border-radius: 3px;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: white;
+    cursor: pointer;
+}

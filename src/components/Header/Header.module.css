@@ -6,9 +6,9 @@
 }
 
 .nav-bar {
-    background: #0E2954;
+    background: #5B0888;
     height: 60px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,4 +40,43 @@
     color: rgb(255, 255, 255);
     font-size: 20px;
     background: transparent;
+}
+
+.logout {
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.none:hover {
+    background: white;
+    color: purple;
+    border-radius: 5px;
+}
+
+.logout:hover {
+    background: white;
+    color: purple;
+    border-radius: 5px;
+    animation: logout 0.5s infinite ease-in-out;
+}
+
+@keyframes logout {
+    25% {
+        transform: rotateZ(-15deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    75% {
+        transform: rotateZ(15deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
 }
