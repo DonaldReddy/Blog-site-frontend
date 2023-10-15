@@ -6,13 +6,13 @@
 }
 
 .nav-bar {
-    background: #5B0888;
     height: 60px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Poppins', sans-serif;
+    box-shadow: 0px 0px 10px black;
 }
 
 .nav-logo {
@@ -37,7 +37,7 @@
 
 .none {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 20px;
     background: transparent;
 }
@@ -46,37 +46,12 @@
     border: none;
     font-size: 20px;
     background: transparent;
-    color: white;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
-.none:hover {
-    background: white;
-    color: purple;
-    border-radius: 5px;
-}
-
+.none:hover,
 .logout:hover {
-    background: white;
-    color: purple;
-    border-radius: 5px;
-    animation: logout 0.5s infinite ease-in-out;
-}
-
-@keyframes logout {
-    25% {
-        transform: rotateZ(-15deg);
-    }
-
-    50% {
-        transform: rotateZ(0deg);
-    }
-
-    75% {
-        transform: rotateZ(15deg);
-    }
-
-    100% {
-        transform: rotateZ(0deg);
-    }
+    background: #00000025;
+    border-radius: 3px;
 }

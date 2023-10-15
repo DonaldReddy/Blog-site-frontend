@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../../context/UserContext.js'
 import { useNavigate } from "react-router-dom"
-import BlogList from "./BlogCard/BlogCard.jsx"
+import BlogCard from "./BlogCard/BlogCard.jsx"
 import styles from "./MyBlogs.module.css"
 import axios from "axios"
 export default Blogs
@@ -16,7 +16,7 @@ function Blogs() {
     async function fetchBlogData() {
 
         try {
-            const response = await axios.get(`http://localhost:3000/blog/blogs/${User.data.email}`)
+            const response = await axios.get(`http://localhost:5000/blog/blogs/${User.data.email}`)
             if (!response.data.status)
                 throw new Error(response.data.error);
             setUserBlogs(response.data.blogs)
@@ -32,11 +32,11 @@ function Blogs() {
     return (
         <div className={styles['container']}>
 
-            <button className={styles['add']} onClick={() => navigate("/user/addblog")} >Add New Blog</button>
+            <button className={styles['add']} onClick={() => navigate("/user/myblogs/addblog")} >Add New Blog</button>
 
             <div className={styles['blog-list']} >
                 {userBlogs.map((ele, idx) => {
-                    return <BlogList title={ele.title} content={ele.content} id={ele._id} key={ele._id} />
+                    return <BlogCard title={ele.title} content={ele.content} id={ele._id} key={ele._id} />
                 })}
             </div>
 

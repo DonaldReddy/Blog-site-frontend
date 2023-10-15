@@ -1,4 +1,36 @@
 .container {
     min-height: 100vh;
-    width: 100vw;
+    width: 90vw;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    min-height: 100vh;
+    width: 90%;
+    padding: 50px;
+}
+
+#title {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#author {
+    text-align: right;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+#content {
+    word-break: break-word;
+    word-spacing: 2px;
+    line-height: 30px;
+    font-size: 20px;
 }

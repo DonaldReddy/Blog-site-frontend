@@ -11,7 +11,7 @@ function OpenBlog() {
     const [content, setContent] = useState("");
 
     async function getBlog() {
-        const response = await axios.get(`http://localhost:3000/blog/${id}`);
+        const response = await axios.get(`http://localhost:5000/blog/${id}`);
         const { email, title, content } = response.data.blog[0];
         setEmail(email)
         setTitle(title)
@@ -24,13 +24,21 @@ function OpenBlog() {
 
     return (
         <div className={styles['container']}>
-            <h1 id={styles['title']}>
-                {title}
-            </h1>
-            <p id={styles['content']}>
-                {content}
-            </p>
-            {email}
+
+            <div className={styles['main']}>
+                <h1 id={styles['title']}>
+                    {title}
+                </h1>
+
+                <p id={styles['content']}>
+                    {content}
+                </p>
+            </div>
+
+            <div id={styles['author']}>
+                Author - {email}
+            </div>
+
         </div>
     )
 }

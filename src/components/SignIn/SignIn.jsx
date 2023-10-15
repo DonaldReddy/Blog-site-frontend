@@ -34,7 +34,7 @@ function SignIn() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:3000/signin", formData, {
+            const response = await axios.post("http://localhost:5000/signin", formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -80,7 +80,7 @@ function SignIn() {
                     <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
                 </label>
 
-                <button id={styles['submit']} onClick={handleSubmit} >SignIn</button>
+                <button id={styles['submit']} onClick={handleSubmit} >Sign In</button>
 
             </form>
 

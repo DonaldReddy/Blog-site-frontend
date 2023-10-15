@@ -34,7 +34,7 @@ function SignUp() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:3000/signup", formData, {
+            const response = await axios.post("http://localhost:5000/signup", formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -83,7 +83,7 @@ function SignUp() {
                     <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
                 </label>
 
-                <button id={styles['submit']} onClick={handleSubmit} >SignUp</button>
+                <button id={styles['submit']} onClick={handleSubmit} >Sign Up</button>
 
             </form>
 

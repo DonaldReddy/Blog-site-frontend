@@ -34,7 +34,7 @@ function AddBlog() {
         try {
             const data = { ...blog, email: User.data.email }
             console.log(data);
-            await axios.post("http://localhost:3000/blog/addblog", data, {
+            await axios.post("http://localhost:5000/blog/addblog", data, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }
