@@ -9,9 +9,12 @@ export default Blogs
 
 function Blogs() {
 
-    const { User, isAuth } = useContext(UserContext);
+    const { User, UserAuth } = useContext(UserContext);
     const [userBlogs, setUserBlogs] = useState([]);
     const navigate = useNavigate()
+
+    if (!UserAuth)
+        navigate("/signin")
 
     async function fetchBlogData() {
 

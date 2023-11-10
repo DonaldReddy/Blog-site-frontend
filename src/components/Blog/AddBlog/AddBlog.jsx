@@ -1,11 +1,17 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./AddBlog.module.css"
 import UserContext from "../../../context/UserContext.js"
 
 function AddBlog() {
 
-    const { User } = useContext(UserContext);
+    const { User, UserAuth } = useContext(UserContext);
+    const navigate = useNavigate();
+    const [contentSize, setContentSize] = useState(800);
+
+    if (!UserAuth)
+        navigate("/signin")
 
     const [blog, setBlog] = useState({
         title: "",
@@ -27,6 +33,8 @@ function AddBlog() {
 
     function handleContentChange(e) {
         const content = e.target.value
+        if (content.length % 100 === 0)
+            setContentSize(contentSize + 50);
         setBlog({ ...blog, ["content"]: content });
     }
 
@@ -47,11 +55,14 @@ function AddBlog() {
 
     return (
         <div className={styles['container']}>
-            <input name="title" id={styles['title']} placeholder='Title' onInput={handleTitleChange} >
 
-            </input>
-            <textarea id={styles['content']} placeholder='Your Story....' onInput={handleContentChange} />
-            <button onClick={handleSubmit} >Add Blog</button>
+            <input name="title" id={styles['title']} placeholder='Title' autoFocus onInput={handleTitleChange} />
+
+            <textarea id={styles['content']} style={{ height: `${contentSize}px` }} placeholder='Your Story....' onInput={handleContentChange} />
+
+            <button id={styles['add']} onClick={handleSubmit} disabled={blog.title && blog.content ? false : true}
+            >Add Blog</button>
+
         </div>
     )
 }

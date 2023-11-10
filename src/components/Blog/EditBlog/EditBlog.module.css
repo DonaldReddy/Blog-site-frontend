@@ -5,18 +5,25 @@
 
 .container {
     min-height: 150vh;
-    width: 100%;
+    width: 95vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-    margin-top: 20px;
+    align-items: flex-start;
+    margin-top: 40px;
+    margin-left: 30px;
 }
 
 #title {
-    height: 50px;
-    width: 60%;
-    font-size: 40px;
+    height: 80px;
+    width: 80%;
+    font-size: 50px;
+    padding-left: 20PX;
+    margin: 20px 0px;
+    resize: none;
+    border: none;
+    outline: none;
+    word-wrap: break-word;
 }
 
 #content {
@@ -24,4 +31,30 @@
     height: 800px;
     font-size: 30px;
     padding: 20px;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+#save {
+    position: relative;
+    left: 45%;
+    margin: 30px;
+    height: 50px;
+    width: 120px;
+    font-size: 20px;
+    border-radius: 20px;
+    background: white;
+    color: #000;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#save:hover {
+    background: #000;
+    color: white;
+}
+
+.disable {
+    background: red;
 }
