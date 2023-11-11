@@ -7,7 +7,7 @@ import UserContext from "../../../context/UserContext.js"
 
 function EditBlog() {
 
-  const { UserAuth } = useContext(UserContext)
+  const { UserAuth, User } = useContext(UserContext)
   const [contentSize, setContentSize] = useState(800)
   const [titleSize, setTitleSize] = useState(80)
   const navigate = useNavigate();
@@ -54,20 +54,22 @@ function EditBlog() {
 
   function handleContentChange(e) {
     const content = e.target.value
-    setContentSize(content.length * 0.8);
-    console.log(contentSize);
+    setContentSize(Math.max(800, content.length * 0.8));
     setBlog({ ...blog, ["content"]: content });
   }
 
   async function handleSave(e) {
     try {
-      const data = { ...blog, email: User.data.email }
+      const data = { ...blog, id: id }
       console.log(data);
-      await axios.post("http://localhost:5000/blog/addblog", data, {
+      const response = await axios.post("http://localhost:5000/blog/editblog", data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         }
       })
+      console.log(response);
+      alert("succesfully saved the blog")
+      navigate("/user/myblogs")
     } catch (error) {
       console.log(error);
     }

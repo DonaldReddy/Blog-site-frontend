@@ -6,9 +6,10 @@ import UserContext from "../../../context/UserContext.js"
 
 function AddBlog() {
 
-    const { User, UserAuth } = useContext(UserContext);
+    const { UserAuth, User } = useContext(UserContext)
+    const [contentSize, setContentSize] = useState(800)
+    const [titleSize, setTitleSize] = useState(100)
     const navigate = useNavigate();
-    const [contentSize, setContentSize] = useState(800);
 
     if (!UserAuth)
         navigate("/signin")
@@ -27,18 +28,20 @@ function AddBlog() {
             e.target.value = title.slice(0, maxWords).join(" ");
             return
         }
+
+        setTitleSize(Math.max(100, e.target.value.length * 3));
+
         title = title.slice(0, maxWords).join(" ");
         setBlog({ ...blog, ["title"]: title });
     }
 
     function handleContentChange(e) {
         const content = e.target.value
-        if (content.length % 100 === 0)
-            setContentSize(contentSize + 50);
+        setContentSize(Math.max(800, content.length * 0.8));
         setBlog({ ...blog, ["content"]: content });
     }
 
-    async function handleSubmit(e) {
+    async function handleAdd(e) {
         try {
             const data = { ...blog, email: User.data.email }
             console.log(data);
@@ -47,6 +50,8 @@ function AddBlog() {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }
             })
+            alert("Succesfully posted new blog")
+            navigate("/user/myblogs")
         } catch (error) {
             console.log(error);
         }
@@ -56,11 +61,11 @@ function AddBlog() {
     return (
         <div className={styles['container']}>
 
-            <input name="title" id={styles['title']} placeholder='Title' autoFocus onInput={handleTitleChange} />
+            <textarea id={styles['title']} style={{ height: `${titleSize}px` }} placeholder='Title' autoFocus onInput={handleTitleChange} />
 
             <textarea id={styles['content']} style={{ height: `${contentSize}px` }} placeholder='Your Story....' onInput={handleContentChange} />
 
-            <button id={styles['add']} onClick={handleSubmit} disabled={blog.title && blog.content ? false : true}
+            <button id={styles['add']} onClick={handleAdd} disabled={blog.title && blog.content ? false : true}
             >Add Blog</button>
 
         </div>
