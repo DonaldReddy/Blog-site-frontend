@@ -42,7 +42,8 @@ function SignIn() {
             if (response.data.status) {
                 const value = {
                     data: {
-                        email: email
+                        email: email,
+                        name: response.data.name
                     },
                     timeStamp: Date.now()
                 };
