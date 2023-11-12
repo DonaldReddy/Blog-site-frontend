@@ -16,7 +16,7 @@ function BlogCard({ title = "", content = "", id = "" }) {
         navigate(`editblog/${id}`)
     }
     function deleteBlog() {
-        console.log("delete");
+        navigate(`deleteblog/${id}`)
     }
 
     return (

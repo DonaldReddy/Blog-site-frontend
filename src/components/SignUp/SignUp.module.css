@@ -27,6 +27,7 @@
     box-shadow: 0px 0px 10px black;
 }
 
+#name,
 #email,
 #password {
     border: 1px solid black;

@@ -17,15 +17,20 @@ function SignUp() {
     }, [])
 
     const [formData, setFormData] = useState({
+        name: "",
         email: "",
         password: ""
     });
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const { email, password } = formData;
+        const { name, email, password } = formData;
 
-        if (email === "" || !email.includes("@")) {
+        if (name === "") {
+            alert("Invalid Name")
+            return
+        }
+        else if (email === "" || !email.includes("@")) {
             alert("Invalid Email");
             return;
         }
@@ -66,12 +71,18 @@ function SignUp() {
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(formData);
     }
 
     return (
         <div className={styles['container']}>
 
             <form id={styles['signup-form']} >
+
+                <label htmlFor={styles['name']}>
+                    Name -
+                    <input type='text' id={styles['name']} name='name' onChange={handleChange} ></input>
+                </label>
 
                 <label htmlFor={styles['email']}>
                     Email -

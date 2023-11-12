@@ -10,6 +10,7 @@ import MyBlogs from './components/Blog/MyBlogs/MyBlogs.jsx'
 import AddBlog from "./components/Blog/AddBlog/AddBlog.jsx"
 import OpenBlog from './components/Blog/OpenBlog/OpenBlog.jsx'
 import EditBlog from './components/Blog/EditBlog/EditBlog.jsx'
+import DeleteBlog from './components/Blog/DeleteBlog/DeleteBlog.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
           <Route path='openblog/:id' element={<OpenBlog />} />
           <Route path='addblog' element={<AddBlog />} />
           <Route path='editblog/:id' element={<EditBlog />} />
+          <Route path='deleteblog/:id' element={<DeleteBlog />} />
         </Route>
       </Route>
     </Route>

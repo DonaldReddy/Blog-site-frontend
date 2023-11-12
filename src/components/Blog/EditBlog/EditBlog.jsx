@@ -79,7 +79,7 @@ function EditBlog() {
   return (
     <div className={styles['container']}>
 
-      <textarea id={styles['title']} style={{ height: `${titleSize}px` }} value={blog.title} onInput={handleTitleChange} />
+      <textarea id={styles['title']} style={{ height: `${titleSize}px` }} value={blog.title} autoFocus onInput={handleTitleChange} />
 
       <textarea id={styles['content']} style={{ height: `${contentSize}px` }} value={blog.content} onInput={handleContentChange} />
 
