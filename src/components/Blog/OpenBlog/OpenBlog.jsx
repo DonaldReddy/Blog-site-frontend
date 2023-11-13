@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import styles from "./OpenBlog.module.css"
 
@@ -9,9 +9,12 @@ function OpenBlog() {
     const [email, setEmail] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const navigate = useNavigate()
 
     async function getBlog() {
         const response = await axios.get(`http://localhost:5000/blog/${id}`);
+        if (!response.data.status)
+            navigate("/user/myblogs")
         const { email, title, content } = response.data.blog[0];
         setEmail(email)
         setTitle(title)
