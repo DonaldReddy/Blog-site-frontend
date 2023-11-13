@@ -9,11 +9,17 @@ function SignIn() {
     const navigate = useNavigate()
 
     const { User, setUser, UserAuth, setUserAuth } = useContext(UserContext);
+    const [width, setWidth] = useState(window.innerWidth)
+
+    function handleResize() {
+        setWidth(window.innerWidth)
+    }
 
     useEffect(() => {
         if (UserAuth) {
             navigate("/");
         }
+        window.addEventListener('resize', handleResize);
     }, [])
 
     const [formData, setFormData] = useState({
@@ -67,9 +73,9 @@ function SignIn() {
     }
 
     return (
-        <div className={styles['container']}>
+        <div className={styles['container']} >
 
-            <form id={styles['signup-form']} >
+            <form id={styles['signup-form']} style={width <= 500 ? { width: '380px' } : {}}>
 
                 <label htmlFor={styles['email']}>
                     Email -

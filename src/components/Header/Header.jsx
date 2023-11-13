@@ -29,35 +29,45 @@ function Header() {
     return (
         <nav className={styles['nav-bar']} >
             <div className={styles['nav-logo']}>
-                <img src='' alt='logo' />
+                <img src='' alt='Blogiac-logo' />
             </div>
             {(
 
                 width <= 500 ? <Menu /> :
                     <ul id={styles['nav-ul']}>
                         <li>
-                            <NavLink to="/" className={styles.none}>
+                            <NavLink to="/" className={(isActive) => {
+                                return styles.none + (isActive.isActive ? ' ' + styles.active : '')
+                            }}>
                                 Home
                             </NavLink>
                         </li>
                         <li>
                             {UserAuth ?
-                                <NavLink to="/user/myblogs" className={styles.none}>
+                                <NavLink to="/user/myblogs" className={(isActive) => {
+                                    return styles.none + (isActive.isActive ? ' ' + styles.active : '')
+                                }}>
                                     My Blogs
                                 </NavLink>
                                 :
-                                <NavLink to="/signin" className={styles.none}>
+                                <NavLink to="/signin" className={(isActive) => {
+                                    return styles.none + (isActive.isActive ? ' ' + styles.active : '')
+                                }}>
                                     SignIn
                                 </NavLink>
                             }
                         </li>
                         <li>
                             {UserAuth ?
-                                <NavLink to="/user/account" className={styles.none}>
+                                <NavLink to="/user/account" className={(isActive) => {
+                                    return styles.none + (isActive.isActive ? ' ' + styles.active : '')
+                                }}>
                                     My Account
                                 </NavLink>
                                 :
-                                <NavLink to="/signup" className={styles.none}>
+                                <NavLink to="/signup" className={(isActive) => {
+                                    return styles.none + (isActive.isActive ? ' ' + styles.active : '')
+                                }}>
                                     SignUp
                                 </NavLink>
                             }

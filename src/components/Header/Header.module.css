@@ -42,6 +42,12 @@
     background: transparent;
 }
 
+.active {
+    background: #0000004a;
+    border-radius: 5px;
+    padding: 0px 5px;
+}
+
 .logout {
     border: none;
     font-size: 2vw;

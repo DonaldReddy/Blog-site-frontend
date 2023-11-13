@@ -17,23 +17,23 @@ function Menu() {
 
     return (
         <div id={styles['container']} >
-            <img id={styles['menu-icon']} src='../../../../public/menu.png' onClick={handleMenu} />
+            <img id={styles['menu-icon']} src='/menu.png' onClick={handleMenu} />
 
             <div id={styles['menu']} className={hide ? styles['menu-close'] : styles['menu-open']} >
 
                 <ul id={styles['nav-ul']}>
                     <li>
-                        <NavLink to="/" className={styles.none}>
+                        <NavLink to="/" className={styles.none} onClick={handleMenu} >
                             Home
                         </NavLink>
                     </li>
                     <li>
                         {UserAuth ?
-                            <NavLink to="/user/myblogs" className={styles.none}>
+                            <NavLink to="/user/myblogs" className={styles.none} >
                                 My Blogs
                             </NavLink>
                             :
-                            <NavLink to="/signin" className={styles.none}>
+                            <NavLink to="/signin" className={styles.none} onClick={handleMenu}>
                                 SignIn
                             </NavLink>
                         }
@@ -44,7 +44,7 @@ function Menu() {
                                 My Account
                             </NavLink>
                             :
-                            <NavLink to="/signup" className={styles.none}>
+                            <NavLink to="/signup" className={styles.none} onClick={handleMenu}>
                                 SignUp
                             </NavLink>
                         }
