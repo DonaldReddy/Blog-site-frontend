@@ -19,7 +19,7 @@ function Blogs() {
     async function fetchBlogData() {
 
         try {
-            const response = await axios.get(`http://localhost:5000/blog/blogs/${User.data.email}`)
+            const response = await axios.get(`https://blogiac-server.onrender.com/blog/blogs/${User.data.email}`)
             if (!response.data.status)
                 throw new Error(response.data.error);
             setUserBlogs(response.data.blogs)

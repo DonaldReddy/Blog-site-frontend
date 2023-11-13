@@ -12,7 +12,7 @@ function OpenBlog() {
     const navigate = useNavigate()
 
     async function getBlog() {
-        const response = await axios.get(`http://localhost:5000/blog/${id}`);
+        const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
         if (!response.data.status)
             navigate("/user/myblogs")
         const { email, title, content } = response.data.blog[0];

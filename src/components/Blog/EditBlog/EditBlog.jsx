@@ -24,7 +24,7 @@ function EditBlog() {
 
   async function getBlog(id) {
     try {
-      const response = await axios.get(`http://localhost:5000/blog/${id}`);
+      const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
       const { title, content } = response.data.blog[0]
       setBlog({ title: title, content: content })
       setContentSize(Math.max(800, content.length * 0.8));
@@ -62,7 +62,7 @@ function EditBlog() {
     try {
       const data = { ...blog, id: id }
       console.log(data);
-      const response = await axios.post("http://localhost:5000/blog/editblog", data, {
+      const response = await axios.post("https://blogiac-server.onrender.com/blog/editblog", data, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         }

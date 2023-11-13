@@ -44,7 +44,7 @@ function AddBlog() {
     async function handleAdd(e) {
         try {
             const data = { ...blog, email: User.data.email, author: User.data.name }
-            await axios.post("http://localhost:5000/blog/addblog", data, {
+            await axios.post("https://blogiac-server.onrender.com/blog/addblog", data, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }

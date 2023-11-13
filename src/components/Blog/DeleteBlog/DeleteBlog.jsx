@@ -15,7 +15,7 @@ function DeleteBlog() {
 
     async function getBlog(id) {
         try {
-            const response = await axios.get(`http://localhost:5000/blog/${id}`);
+            const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
             if (response.data.blog[0].email === User.data.email) {
                 setIsAuth(true);
             }
@@ -36,7 +36,7 @@ function DeleteBlog() {
 
     async function handleConfirm() {
         const data = { id: id };
-        const response = await axios.delete(`http://localhost:5000/blog/deleteblog/${id}`, data, {
+        const response = await axios.delete(`https://blogiac-server.onrender.com/blog/deleteblog/${id}`, data, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }

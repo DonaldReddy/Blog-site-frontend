@@ -39,7 +39,7 @@ function SignUp() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:5000/signup", formData, {
+            const response = await axios.post("https://blogiac-server.onrender.com/signup", formData, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
