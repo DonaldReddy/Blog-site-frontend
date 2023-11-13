@@ -37,7 +37,7 @@ function Header() {
                     <ul id={styles['nav-ul']}>
                         <li>
                             <NavLink to="/" className={styles.none}>
-                                {JSON.stringify(width)}
+                                Home
                             </NavLink>
                         </li>
                         <li>

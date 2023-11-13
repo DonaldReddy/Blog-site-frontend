@@ -4,12 +4,6 @@ import styles from "./Home.module.css"
 
 function Home() {
 
-    const user = JSON.parse(localStorage.getItem("user"))
-
-    if (user) {
-
-    }
-
     return (
         <div className={styles['container']}>
             <div className={styles['main']}>
