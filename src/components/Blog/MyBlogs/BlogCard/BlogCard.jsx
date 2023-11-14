@@ -24,7 +24,7 @@ function BlogCard({ title = "", content = "", id = "" }) {
             <div className={styles['blog-card']} id={id}  >
                 <div id={styles['main']} onClick={(e) => openBlog(e.target.id)}>
                     <h1 id={id} >{title}</h1>
-                    <p id={id}>{content.split(" ").slice(0, 30).join(" ") + "...."}</p>
+                    <p id={id}>{content.split(" ").slice(0, 10).join(" ") + "...."}</p>
                 </div>
                 <div id={styles['button']}>
                     <button id={styles['b1']} value={id} onClick={editBlog} >Edit</button>

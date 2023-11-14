@@ -6,10 +6,17 @@ import UserContext from "../../../context/UserContext.js"
 
 function Menu() {
 
-    const { UserAuth } = useContext(UserContext)
+    const { UserAuth, setUserAuth } = useContext(UserContext)
     const [hide, setHide] = useState(true);
 
-    function logout() { }
+    function logout() {
+        handleMenu()
+        setUserAuth(false);
+        setUser({});
+        localStorage.removeItem("user");
+        alert("Signed Out!!!")
+        navigate("/");
+    }
 
     function handleMenu() {
         setHide(!hide);
@@ -29,7 +36,7 @@ function Menu() {
                     </li>
                     <li>
                         {UserAuth ?
-                            <NavLink to="/user/myblogs" className={styles.none} >
+                            <NavLink to="/user/myblogs" className={styles.none} onClick={handleMenu}>
                                 My Blogs
                             </NavLink>
                             :
@@ -40,7 +47,7 @@ function Menu() {
                     </li>
                     <li>
                         {UserAuth ?
-                            <NavLink to="/user/account" className={styles.none}>
+                            <NavLink to="/user/account" className={styles.none} onClick={handleMenu}>
                                 My Account
                             </NavLink>
                             :

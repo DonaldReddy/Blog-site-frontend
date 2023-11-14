@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import styles from "./Header.module.css";
 import UserContext from "../../context/UserContext.js"
 import Menu from './Menu/Menu.jsx';
@@ -29,7 +29,9 @@ function Header() {
     return (
         <nav className={styles['nav-bar']} >
             <div className={styles['nav-logo']}>
-                <img src='' alt='Blogiac-logo' />
+                <Link to="/" >
+                    Blogiac
+                </Link>
             </div>
             {(
 

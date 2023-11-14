@@ -6,7 +6,7 @@ import styles from "./OpenBlog.module.css"
 function OpenBlog() {
 
     const { id } = useParams()
-    const [email, setEmail] = useState("");
+    const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const navigate = useNavigate()
@@ -15,8 +15,9 @@ function OpenBlog() {
         const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
         if (!response.data.status)
             navigate("/user/myblogs")
-        const { email, title, content } = response.data.blog[0];
-        setEmail(email)
+        console.log(response.data);
+        const { author, title, content } = response.data.blog[0];
+        setAuthor(author)
         setTitle(title)
         setContent(content)
     }
@@ -39,7 +40,7 @@ function OpenBlog() {
             </div>
 
             <div id={styles['author']}>
-                Author - {email}
+                Author - {author}
             </div>
 
         </div>

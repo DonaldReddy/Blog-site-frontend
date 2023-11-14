@@ -6,7 +6,9 @@ function Footer() {
         <>
             <footer id={styles['footer']}>
                 <div id={styles['container']}>
-                    <div className={styles['footer-logo']}> <img src='' alt='Blogiac-logo' /> </div>
+                    <div className={styles['footer-logo']}>
+                        Blogiac
+                    </div>
 
                     <ul>
                         <li> <NavLink to='/' >Home</NavLink> </li>

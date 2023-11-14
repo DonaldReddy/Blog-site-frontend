@@ -19,6 +19,7 @@ function SignIn() {
         if (UserAuth) {
             navigate("/");
         }
+        window.scrollTo(0, 0)
         window.addEventListener('resize', handleResize);
     }, [])
 
