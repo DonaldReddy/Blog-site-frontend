@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import styles from "./OpenBlog.module.css"
+import Loader from '../../Loader/Loader.jsx'
 
 function OpenBlog() {
 
@@ -9,9 +10,11 @@ function OpenBlog() {
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
 
     async function getBlog() {
+        setIsLoading(true)
         const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
         if (!response.data.status)
             navigate("/user/myblogs")
@@ -20,6 +23,7 @@ function OpenBlog() {
         setAuthor(author)
         setTitle(title)
         setContent(content)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -29,19 +33,24 @@ function OpenBlog() {
     return (
         <div className={styles['container']}>
 
-            <div className={styles['main']}>
-                <h1 id={styles['title']}>
-                    {title}
-                </h1>
+            {(isLoading ? <div><Loader /></div> :
 
-                <p id={styles['content']}>
-                    {content}
-                </p>
-            </div>
+                <>
+                    <div className={styles['main']}>
+                        <h1 id={styles['title']}>
+                            {title}
+                        </h1>
 
-            <div id={styles['author']}>
-                Author - {author}
-            </div>
+                        <p id={styles['content']}>
+                            {content}
+                        </p>
+                    </div>
+
+                    <div id={styles['author']}>
+                        Author - {author}
+                    </div>
+                </>
+            )}
 
         </div>
     )
