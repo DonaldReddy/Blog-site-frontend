@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import styles from "./EditBlog.module.css"
 import axios from "axios"
 import UserContext from "../../../context/UserContext.js"
+import Loader from '../../Loader/Loader.jsx'
 
 
 function EditBlog() {
@@ -10,6 +11,7 @@ function EditBlog() {
   const { UserAuth, User } = useContext(UserContext)
   const [contentSize, setContentSize] = useState(800)
   const [titleSize, setTitleSize] = useState(80)
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate();
 
   if (!UserAuth)
@@ -23,7 +25,9 @@ function EditBlog() {
   });
 
   async function getBlog(id) {
+
     try {
+      setIsLoading(true)
       const response = await axios.get(`https://blogiac-server.onrender.com/blog/${id}`);
       const { title, content } = response.data.blog[0]
       setBlog({ title: title, content: content })
@@ -31,6 +35,9 @@ function EditBlog() {
       setTitleSize(Math.max(80, title.length * 0.8));
     } catch (error) {
       console.log(error.message);
+    }
+    finally {
+      setIsLoading(false)
     }
   }
 
@@ -79,11 +86,15 @@ function EditBlog() {
   return (
     <div className={styles['container']}>
 
-      <textarea id={styles['title']} style={{ height: `${titleSize}px` }} value={blog.title} autoFocus onInput={handleTitleChange} />
+      {(isLoading ? <div id={styles['loader']}><Loader /></div> :
+        <>
+          <textarea id={styles['title']} style={{ height: `${titleSize}px` }} value={blog.title} autoFocus onInput={handleTitleChange} />
 
-      <textarea id={styles['content']} style={{ height: `${contentSize}px` }} value={blog.content} onInput={handleContentChange} />
+          <textarea id={styles['content']} style={{ height: `${contentSize}px` }} value={blog.content} onInput={handleContentChange} />
 
-      <button id={styles['save']} onClick={handleSave} >Save Blog</button>
+          <button id={styles['save']} onClick={handleSave} >Save Blog</button>
+        </>
+      )}
 
     </div>
   )

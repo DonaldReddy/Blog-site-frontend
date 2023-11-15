@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./AddBlog.module.css"
 import UserContext from "../../../context/UserContext.js"
+import Loader from '../../Loader/Loader.jsx'
 
 function AddBlog() {
 
     const { UserAuth, User } = useContext(UserContext)
     const [contentSize, setContentSize] = useState(800)
     const [titleSize, setTitleSize] = useState(100)
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate();
 
     if (!UserAuth)
@@ -43,6 +45,8 @@ function AddBlog() {
 
     async function handleAdd(e) {
         try {
+            setIsLoading(true)
+            window.scrollTo(0, 0)
             const data = { ...blog, email: User.data.email, author: User.data.name }
             await axios.post("https://blogiac-server.onrender.com/blog/addblog", data, {
                 headers: {
@@ -54,18 +58,25 @@ function AddBlog() {
         } catch (error) {
             console.log(error);
         }
+        finally {
+            setIsLoading(false)
+        }
     }
 
 
     return (
         <div className={styles['container']}>
 
-            <textarea id={styles['title']} style={{ height: `${titleSize}px` }} placeholder='Title' autoFocus onInput={handleTitleChange} />
+            {(isLoading ? <div id={styles['loader']}><Loader /></div> :
+                <>
+                    <textarea id={styles['title']} style={{ height: `${titleSize}px` }} placeholder='Title' autoFocus onInput={handleTitleChange} />
 
-            <textarea id={styles['content']} style={{ height: `${contentSize}px` }} placeholder='Your Story....' onInput={handleContentChange} />
+                    <textarea id={styles['content']} style={{ height: `${contentSize}px` }} placeholder='Your Story....' onInput={handleContentChange} />
 
-            <button id={styles['add']} onClick={handleAdd} disabled={blog.title && blog.content ? false : true}
-            >Add Blog</button>
+                    <button id={styles['add']} onClick={handleAdd} disabled={blog.title && blog.content ? false : true}
+                    >Add Blog</button>
+                </>
+            )}
 
         </div>
     )

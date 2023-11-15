@@ -62,3 +62,9 @@
 .disable {
     background: red;
 }
+
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}

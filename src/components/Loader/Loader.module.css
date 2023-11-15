@@ -1,0 +1,27 @@
+#loader {
+    height: 150px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.shape {
+    height: 50px;
+    width: 5px;
+    background: rgb(0, 0, 0);
+    animation: loading 1s infinite ease;
+}
+
+#fig1 {
+    position: absolute;
+    animation-delay: 0.09s;
+}
+
+@keyframes loading {
+
+    100% {
+        transform: rotateZ(360deg);
+    }
+}

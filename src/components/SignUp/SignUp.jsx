@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
 import UserContext from "../../context/UserContext.js"
+import Loader from "../Loader/Loader.jsx"
 import axios from "axios"
 import styles from "./SignUp.module.css"
 
@@ -10,12 +11,14 @@ function SignUp() {
 
     const { User, setUser, UserAuth, setUserAuth } = useContext(UserContext);
     const [width, setWidth] = useState(window.innerWidth)
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleResize() {
         setWidth(window.innerWidth)
     }
 
     useEffect(() => {
+        setIsLoading(false)
         if (UserAuth) {
             navigate("/");
         }
@@ -31,6 +34,7 @@ function SignUp() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setIsLoading(true)
         const { name, email, password } = formData;
 
         if (name === "") {
@@ -61,10 +65,8 @@ function SignUp() {
 
                 localStorage.setItem("user", JSON.stringify(value));
 
-                setTimeout(() => {
-                    alert("Successfully created account, please login!!")
-                    navigate("/")
-                }, 3000);
+                alert("Successfully created account, please login!!")
+                navigate("/")
             }
             else {
                 if (response.data.error.code == 11000)
@@ -72,6 +74,9 @@ function SignUp() {
             }
         } catch (error) {
             console.error(error);
+        }
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -84,27 +89,29 @@ function SignUp() {
     return (
         <div className={styles['container']}>
 
-            <form id={styles['signup-form']} style={width <= 500 ? { width: '380px' } : {}}>
+            {(isLoading ? <Loader />
+                :
+                <form id={styles['signup-form']} style={width <= 500 ? { width: '380px' } : {}}>
 
-                <label htmlFor={styles['name']}>
-                    Name -
-                    <input type='text' id={styles['name']} name='name' onChange={handleChange} ></input>
-                </label>
+                    <label htmlFor={styles['name']}>
+                        Name -
+                        <input type='text' id={styles['name']} name='name' onChange={handleChange} ></input>
+                    </label>
 
-                <label htmlFor={styles['email']}>
-                    Email -
-                    <input type='email' id={styles['email']} name='email' onChange={handleChange} ></input>
-                </label>
+                    <label htmlFor={styles['email']}>
+                        Email -
+                        <input type='email' id={styles['email']} name='email' onChange={handleChange} ></input>
+                    </label>
 
-                <label htmlFor={styles['password']}>
-                    Password -
-                    <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
-                </label>
+                    <label htmlFor={styles['password']}>
+                        Password -
+                        <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
+                    </label>
 
-                <button id={styles['submit']} onClick={handleSubmit} >Sign Up</button>
+                    <button id={styles['submit']} onClick={handleSubmit} >Sign Up</button>
 
-            </form>
-
+                </form>
+            )}
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
 import UserContext from "../../context/UserContext.js"
+import Loader from "../Loader/Loader.jsx"
 import axios from "axios"
 import styles from "./SignIn.module.css"
 
@@ -10,12 +11,14 @@ function SignIn() {
 
     const { User, setUser, UserAuth, setUserAuth } = useContext(UserContext);
     const [width, setWidth] = useState(window.innerWidth)
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleResize() {
         setWidth(window.innerWidth)
     }
 
     useEffect(() => {
+        setIsLoading(false)
         if (UserAuth) {
             navigate("/");
         }
@@ -30,6 +33,7 @@ function SignIn() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setIsLoading(true)
         const { email, password } = formData;
 
         if (email === "" || !email.includes("@")) {
@@ -57,14 +61,15 @@ function SignIn() {
 
                 localStorage.setItem("user", JSON.stringify(value));
 
-                setTimeout(() => {
-                    setUser(value);
-                    setUserAuth(true);
-                    navigate("/")
-                }, 3000);
+                setUser(value);
+                setUserAuth(true);
+                navigate("/")
             }
         } catch (error) {
             console.error(error);
+        }
+        finally {
+            setIsLoading(false)
         }
     }
 
@@ -76,21 +81,23 @@ function SignIn() {
     return (
         <div className={styles['container']} >
 
-            <form id={styles['signup-form']} style={width <= 500 ? { width: '380px' } : {}}>
+            {(isLoading ? <Loader /> :
+                <form id={styles['signup-form']} style={width <= 500 ? { width: '380px' } : {}}>
 
-                <label htmlFor={styles['email']}>
-                    Email -
-                    <input type='email' id={styles['email']} name='email' onChange={handleChange} ></input>
-                </label>
+                    <label htmlFor={styles['email']}>
+                        Email -
+                        <input type='email' id={styles['email']} name='email' onChange={handleChange} ></input>
+                    </label>
 
-                <label htmlFor={styles['password']}>
-                    Password -
-                    <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
-                </label>
+                    <label htmlFor={styles['password']}>
+                        Password -
+                        <input type='password' id={styles['password']} name='password' onChange={handleChange} ></input>
+                    </label>
 
-                <button id={styles['submit']} onClick={handleSubmit} >Sign In</button>
+                    <button id={styles['submit']} onClick={handleSubmit} >Sign In</button>
 
-            </form>
+                </form>
+            )}
 
         </div>
     )
