@@ -4,7 +4,7 @@ import styles from "./BlogCard.module.css"
 import EditBlog from "../../EditBlog/EditBlog.jsx"
 
 
-function BlogCard({ title = "", content = "", id = "" }) {
+function BlogCard({ title = "", content = "", id = "", editable = false }) {
 
     const navigate = useNavigate()
 
@@ -15,6 +15,7 @@ function BlogCard({ title = "", content = "", id = "" }) {
     function editBlog() {
         navigate(`editblog/${id}`)
     }
+
     function deleteBlog() {
         navigate(`deleteblog/${id}`)
     }
@@ -26,10 +27,12 @@ function BlogCard({ title = "", content = "", id = "" }) {
                     <h1 id={id} >{title}</h1>
                     <p id={id}>{content.split(" ").slice(0, 10).join(" ") + "...."}</p>
                 </div>
-                <div id={styles['button']}>
-                    <button id={styles['b1']} value={id} onClick={editBlog} >Edit</button>
-                    <button id={styles['b2']} value={id} onClick={deleteBlog} >Delete</button>
-                </div>
+                {editable ?
+                    <div id={styles['button']}>
+                        <button id={styles['b1']} value={id} onClick={editBlog} >Edit</button>
+                        <button id={styles['b2']} value={id} onClick={deleteBlog} >Delete</button>
+                    </div> : ""
+                }
             </div>
         </>
     )

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink } from "react-router-dom"
 import styles from "./Home.module.css"
-
+import RandomBlogs from "../Blog/RandomBlogs/RandomBlogs.jsx"
 function Home() {
 
     useEffect(() => {
@@ -10,11 +10,11 @@ function Home() {
 
     return (
         <div className={styles['container']}>
+            <h1>
+                Popular Blogs
+            </h1>
             <div className={styles['main']}>
-                <h1>
-                    Spread your knowledge by Writing.
-                </h1>
-                <NavLink to="" ></NavLink>
+                <RandomBlogs />
             </div>
         </div>
     )

@@ -50,7 +50,7 @@ function Blogs() {
                         (
                             userBlogs.length ?
                                 userBlogs.map((ele, idx) => {
-                                    return <BlogCard title={ele.title} content={ele.content} id={ele._id} key={ele._id} />
+                                    return <BlogCard title={ele.title} content={ele.content} id={ele._id} key={ele._id} editable={true} />
                                 }) :
                                 <h2>No blogs found. Why not add a new one?</h2>
                         )

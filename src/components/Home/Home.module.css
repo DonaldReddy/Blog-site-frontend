@@ -17,12 +17,8 @@
 
 .main {
     width: 75%;
-    height: 70vh;
+    min-height: 70vh;
     border-radius: 50px;
-    display: flex;
-    align-items: center;
-    font-size: 3vw;
-    color: rgb(0, 0, 0);
-    position: relative;
     right: 20px;
+    margin-top: 3vw;
 }
