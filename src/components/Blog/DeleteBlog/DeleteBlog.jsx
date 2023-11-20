@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
-import UserContext from "../../../context/UserContext.js"
+import UserContext from "../../../context/UserContext/UserContext.js"
 import axios from 'axios'
 import styles from "./DeleteBlog.module.css"
 import Loader from '../../Loader/Loader.jsx'

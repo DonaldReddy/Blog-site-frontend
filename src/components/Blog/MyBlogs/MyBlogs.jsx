@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import UserContext from '../../../context/UserContext.js'
+import UserContext from '../../../context/UserContext/UserContext.js'
 import { useNavigate } from "react-router-dom"
 import BlogCard from "./BlogCard/BlogCard.jsx"
 import Loader from '../../Loader/Loader.jsx'

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import styles from "./EditBlog.module.css"
 import axios from "axios"
-import UserContext from "../../../context/UserContext.js"
+import UserContext from "../../../context/UserContext/UserContext.js"
 import Loader from '../../Loader/Loader.jsx'
 
 

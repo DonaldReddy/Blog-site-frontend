@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./AddBlog.module.css"
-import UserContext from "../../../context/UserContext.js"
+import UserContext from "../../../context/UserContext/UserContext.js"
 import Loader from '../../Loader/Loader.jsx'
 
 function AddBlog() {

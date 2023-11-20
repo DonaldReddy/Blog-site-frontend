@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import UserContext from "../../context/UserContext.js"
+import UserContext from "../../context/UserContext/UserContext.js"
 import { useNavigate } from 'react-router-dom'
 import styles from "./Dashboard.module.css"
 
